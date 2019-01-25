@@ -8,13 +8,13 @@ import (
 
 func main() {
 
-	conn, err := net.Dial("tcp", "www.ic.unicamp.br:80")
+	conn, err := net.Dial("tcp", ":7788")
 	checkError(err)
 	defer conn.Close()
 
-	_, err = conn.Write([]byte("GET /~afalcao/ HTTP/1.0\r\n\r\n"))
+	_, err = conn.Write([]byte("TESTE\n"))
 	checkError(err)
-
+	// msg, err := bufio.NewReader(conn).ReadString('\n')
 	var buf [512]byte
 	for {
 		n, err := conn.Read(buf[0:])
